@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace SimplyEntranceGuard
 {
-    public partial class Form1 : Form
+    public partial class CheckinForm : Form
     {
-        public Form1()
+        public CheckinForm()
         {
             InitializeComponent();
         }
+
+
     }
 }

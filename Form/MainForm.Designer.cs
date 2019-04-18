@@ -39,7 +39,7 @@
             // 
             this.btn_form_switch_checkin.AccessibleName = "true";
             this.btn_form_switch_checkin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_form_switch_checkin.Location = new System.Drawing.Point(676, 39);
+            this.btn_form_switch_checkin.Location = new System.Drawing.Point(958, 42);
             this.btn_form_switch_checkin.Name = "btn_form_switch_checkin";
             this.btn_form_switch_checkin.Size = new System.Drawing.Size(98, 46);
             this.btn_form_switch_checkin.TabIndex = 0;
@@ -56,7 +56,7 @@
             // btn_form_switch_staff_management
             // 
             this.btn_form_switch_staff_management.AccessibleName = "true";
-            this.btn_form_switch_staff_management.Location = new System.Drawing.Point(676, 91);
+            this.btn_form_switch_staff_management.Location = new System.Drawing.Point(958, 140);
             this.btn_form_switch_staff_management.Name = "btn_form_switch_staff_management";
             this.btn_form_switch_staff_management.Size = new System.Drawing.Size(98, 46);
             this.btn_form_switch_staff_management.TabIndex = 3;
@@ -69,14 +69,14 @@
             this.panel_main.AccessibleName = "true";
             this.panel_main.Location = new System.Drawing.Point(1, 1);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(669, 477);
+            this.panel_main.Size = new System.Drawing.Size(928, 556);
             this.panel_main.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 479);
+            this.ClientSize = new System.Drawing.Size(1187, 563);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.btn_form_switch_staff_management);
             this.Controls.Add(this.btn_form_switch_checkin);

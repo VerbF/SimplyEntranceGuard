@@ -26,7 +26,7 @@ namespace SimplyEntranceGuard
 
         private void Btn_login_Click(object sender, EventArgs e)
         {
-            CheckinForm form_checkin = new CheckinForm();
+            CheckinForm form_checkin = new CheckinForm(form_main);
             Panel panel_main = form_main.panel_main;
 
             form_checkin.TopLevel = false;

@@ -10,13 +10,18 @@ using System.Windows.Forms;
 
 namespace SimplyEntranceGuard
 {
-    public partial class CheckinForm : Form
+    public partial class StaffManagementForm : Form
     {
-        public CheckinForm()
+        public MainForm form_main;
+        public StaffManagementForm(MainForm form)
         {
             InitializeComponent();
+            form_main = form;
         }
 
+        private void StaffManagementForm_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -129,6 +129,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "StaffManagementForm";
             this.Text = "StaffManagementForm";
+            this.Load += new System.EventHandler(this.StaffManagementForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

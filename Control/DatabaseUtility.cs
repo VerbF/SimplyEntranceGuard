@@ -23,6 +23,10 @@ namespace SimplyEntranceGuard.Control
             connection = new MySqlConnection(ConString);//连接数据库
             connection.Open();//打开连接            
         }
+        /// <summary>
+        /// 获得全部人员数据
+        /// </summary>
+        /// <returns></returns>
         public List<Staff> GetAllStaffs()
         {
             List<Staff> staffs = new List<Staff>();
@@ -35,7 +39,8 @@ namespace SimplyEntranceGuard.Control
                 Staff staff = new Staff();
                 staff.CardID = row["card_id"].ToString();
                 staff.Name = row["name"].ToString();
-                staff.Dapartment = row["department_id"].ToString();
+                staff.DepartmentID = row["department_id"].ToString();
+                staff.DepartmentName = GetDepartmentNameByID(staff.DepartmentID);
                 staffs.Add(staff);
             }
 
@@ -53,6 +58,46 @@ namespace SimplyEntranceGuard.Control
             dataAdapter.Fill(dataSet);
             DataTable dataTable = dataSet.Tables[0];
             return dataTable;
+        }
+        /// <summary>
+        /// 通过card_id 获取 人员信息
+        /// </summary>
+        /// <param name="card_id"></param>
+        /// <returns></returns>
+        public Staff GetStaffByCardID(string card_id)
+        {
+            Staff staff = new Staff();
+
+            DataTable dataTable = new DataTable();
+
+            string sql_str = "select * from staff where card_id = '" + card_id + "'";
+            dataTable = SelectSql(sql_str);
+            DataRow row = dataTable.Rows[0];
+
+            staff.CardID = row["card_id"].ToString();
+            staff.Name = row["name"].ToString();
+            staff.DepartmentID = row["department_id"].ToString();
+
+            return staff;
+        }
+        /// <summary>
+        /// 通过部门id获得部门名称
+        /// </summary>
+        /// <param name="department_id"></param>
+        /// <returns></returns>
+        public string GetDepartmentNameByID(string department_id)
+        {
+            string department_name;
+
+            DataTable dataTable = new DataTable();
+            string sql_str = "select * from department where id = '" + department_id + "'";
+            dataTable = SelectSql(sql_str);
+            DataRow row = dataTable.Rows[0];
+
+            department_name = row["name"].ToString();
+
+            return department_name;
+
         }
         /// <summary>
         /// 关闭与数据库的连接

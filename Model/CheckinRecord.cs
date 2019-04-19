@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SimplyEntranceGuard.Control
 {
-    public class CheckinRecord
+    public class CheckinRecord : IComparable<CheckinRecord>
     {
         public string CheckinTime;
         public Staff staff;
 
         public int CompareTo(CheckinRecord other)
         {
-            int compare_result = string.Compare(this.CheckinTime, other.CheckinTime);
+            int compare_result = string.Compare(this.staff.CardID, other.staff.CardID);
             if (compare_result > 0)
                 return 1;
             else if (compare_result == 0)

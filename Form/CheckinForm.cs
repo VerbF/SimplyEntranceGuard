@@ -23,11 +23,23 @@ namespace SimplyEntranceGuard
         }
         private void CheckinForm_Load(object sender, EventArgs e)
         {
-            //设置列表标题
+            //设置已考勤人员列表标题
             listView_checkin.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_checkin.Columns.Add("考勤时间", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_checkin.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
-            this.listView_checkin.View = System.Windows.Forms.View.Details;
+            listView_checkin.View = System.Windows.Forms.View.Details;
+
+            //设置迟到人员列表标题
+            listView_late.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_late.Columns.Add("考勤时间", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_late.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_late.View = System.Windows.Forms.View.Details;
+
+            //设置未考勤人员列表标题
+            listView_not_checkin.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。            
+            listView_not_checkin.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_not_checkin.View = System.Windows.Forms.View.Details;
+
         }
         /// <summary>
         /// 更新考勤数据
@@ -36,31 +48,97 @@ namespace SimplyEntranceGuard
         /// <param name="e"></param>
         private void Btn_update_Click(object sender, EventArgs e)
         {
-            //从数据库中获取全部人员信息
-            DatabaseUtility databaseUtility = new DatabaseUtility();
-            List<Staff> staffs = databaseUtility.GetAllStaffs();
+
             List<CheckinRecord> records_checkin = new List<CheckinRecord>();
             List<CheckinRecord> records_late = new List<CheckinRecord>();
             List<CheckinRecord> records_not_checkin = new List<CheckinRecord>();
+
+            //获得考勤时间段
+            start_time = tbox_start_time.Text;
+            end_time = tbox_end_time.Text;
+
+            //从数据库中获取全部人员信息
+            DatabaseUtility databaseUtility = new DatabaseUtility();
+            List<Staff> staffs = databaseUtility.GetAllStaffs();
             databaseUtility.CloseConnection();
 
             listView_checkin.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            listView_late.BeginUpdate();
+            listView_not_checkin.BeginUpdate();
+
             listView_checkin.Items.Clear();     //清除原数据
+            listView_late.Items.Clear();     //清除原数据
+            listView_not_checkin.Items.Clear();     //清除原数据
 
             List<CheckinRecord> records = form_main.fileUtility.GetNewCheckinRecord();//获得考勤数据
 
+            records.Sort();
 
-            foreach(CheckinRecord record in records)
+            //每个人员只保留一条时间最早的考勤记录
+            for(int i = 0; i < records.Count();)
             {
-                /*ListViewItem listViewItem = new ListViewItem();
+                if(i + 1 != records.Count())
+                {
+                    if (records[i].staff.CardID == records[i + 1].staff.CardID)
+                    {
+                        if (records[i].CheckinTime.CompareTo(records[i + 1].CheckinTime) > 0)
+                            records.Remove(records[i]);
+                        else
+                            records.Remove(records[i + 1]);
+                        continue;
+                    }
+                }
+                ++i;
+            }
+            //筛选出以考勤人员，迟到人员，未考勤人员
+            foreach (CheckinRecord record in records)
+            {
+                if (record.CheckinTime.CompareTo(end_time) <= 0)
+                    records_checkin.Add(record);
+                else
+                    records_late.Add(record);
+                for(int i = 0; i < staffs.Count(); ++i)
+                {
+                    Staff staff = staffs[i];
+                    if (staff.CardID.Equals(record.staff.CardID))
+                    {
+                        staffs.Remove(staff);
+                        break;
+                    }
+                }
+            }
+            //显示考勤人员
+            foreach(CheckinRecord record in records_checkin)
+            {
+                ListViewItem listViewItem = new ListViewItem();
                 listViewItem.Text = record.staff.Name;
                 listViewItem.SubItems.Add(record.CheckinTime);
-                this.listView_checkin.Items.Add(listViewItem);*/
-                
+                listViewItem.SubItems.Add(record.staff.DepartmentName);
+
+                this.listView_checkin.Items.Add(listViewItem);
+            }
+            //显示迟到人员
+            foreach (CheckinRecord record in records_late)
+            {
+                ListViewItem listViewItem = new ListViewItem();
+                listViewItem.Text = record.staff.Name;
+                listViewItem.SubItems.Add(record.CheckinTime);
+                listViewItem.SubItems.Add(record.staff.DepartmentName);
+                this.listView_late.Items.Add(listViewItem);
+            }
+            //显示未考勤人员
+            foreach (Staff staff in staffs)
+            {
+                ListViewItem listViewItem = new ListViewItem();
+                listViewItem.Text = staff.Name;
+                listViewItem.SubItems.Add(staff.DepartmentName);
+                this.listView_not_checkin.Items.Add(listViewItem);
             }
 
 
-            this.listView_checkin.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+            listView_checkin.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+            listView_late.EndUpdate();
+            listView_not_checkin.EndUpdate();
         }
 
        

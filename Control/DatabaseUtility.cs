@@ -53,6 +53,7 @@ namespace SimplyEntranceGuard.Control
         /// <returns></returns>
         public DataTable SelectSql(string cmd_str)
         {
+            
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd_str, connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
@@ -98,6 +99,16 @@ namespace SimplyEntranceGuard.Control
 
             return department_name;
 
+        }
+        public bool UpdateSql(string sql_str)
+        {
+            bool isSuccess = false;
+            MySqlCommand cmd = new MySqlCommand(sql_str,connection);
+
+            int result_count = cmd.ExecuteNonQuery();
+            if (result_count != 0)
+                isSuccess = true;
+            return isSuccess;
         }
         /// <summary>
         /// 关闭与数据库的连接

@@ -40,6 +40,9 @@ namespace SimplyEntranceGuard
         private void Btn_save_info_Click(object sender, EventArgs e)
         {
             string new_card_id = tbox_card_id.Text;
+            //若没有数据修改，直接返回
+            if (new_card_id == select_row_card_id)
+                return;
             DatabaseUtility databaseUtility = new DatabaseUtility();
             string sql_str = "select * from staff where card_id = '" + new_card_id+"'";
             DataTable dataTable = databaseUtility.SelectSql(sql_str);
@@ -61,6 +64,7 @@ namespace SimplyEntranceGuard
                     MessageBox.Show("保存失败，请重试！");
                 }
             }
+            databaseUtility.CloseConnection();
         }
         //选中行改变事件
         private void ListView_staff_SelectedIndexChanged(object sender, EventArgs e)

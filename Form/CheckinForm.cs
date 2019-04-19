@@ -72,6 +72,8 @@ namespace SimplyEntranceGuard
 
             List<CheckinRecord> records = form_main.fileUtility.GetNewCheckinRecord();//获得考勤数据
 
+            SaveCheckinRecords(records);//将考勤数据写入数据库中
+
             records.Sort();
 
             //每个人员只保留一条时间最早的考勤记录
@@ -140,7 +142,30 @@ namespace SimplyEntranceGuard
             listView_late.EndUpdate();
             listView_not_checkin.EndUpdate();
         }
-
-       
+        /// <summary>
+        /// 将考勤数据保存在数据库中
+        /// </summary>
+        /// <param name="records"></param>
+       public void SaveCheckinRecords(List<CheckinRecord> records )
+       {
+            DatabaseUtility databaseUtility = new DatabaseUtility();
+            DataTable dataTable = new DataTable();
+            foreach(CheckinRecord record in records)
+            {
+                string sql_str = "select * from checkin_record where checkin_time = '" +record.CheckinTime+"' and card_id = '"+ record.staff.CardID+ "'";
+                dataTable = databaseUtility.SelectSql(sql_str);
+                //若数据库中无此记录
+                if(dataTable.Rows.Count == 0)
+                {
+                    sql_str = "insert into checkin_record(checkin_time,card_id) values('"+record.CheckinTime+"','"+record.staff.CardID+"')";
+                    bool isSuccess = databaseUtility.InsertSql(sql_str);
+                    if(!isSuccess)
+                    {
+                        MessageBox.Show("向数据库写入考勤记录错误！");
+                    }
+                }
+            }
+            databaseUtility.CloseConnection();
+       }
     }
 }

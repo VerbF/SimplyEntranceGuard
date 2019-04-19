@@ -5,6 +5,7 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
 using System.Data;
+using System.Windows.Forms;
 
 namespace SimplyEntranceGuard.Control
 {
@@ -73,7 +74,17 @@ namespace SimplyEntranceGuard.Control
 
             string sql_str = "select * from staff where card_id = '" + card_id + "'";
             dataTable = SelectSql(sql_str);
-            DataRow row = dataTable.Rows[0];
+            DataRow row;
+            try
+            {
+                row = dataTable.Rows[0];
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("考勤记录有误请重试！");
+                throw;
+            }
+            
 
             staff.CardID = row["card_id"].ToString();
             staff.Name = row["name"].ToString();
@@ -100,10 +111,30 @@ namespace SimplyEntranceGuard.Control
             return department_name;
 
         }
+        /// <summary>
+        /// 更新语句
+        /// </summary>
+        /// <param name="sql_str"></param>
+        /// <returns></returns>
         public bool UpdateSql(string sql_str)
         {
             bool isSuccess = false;
             MySqlCommand cmd = new MySqlCommand(sql_str,connection);
+
+            int result_count = cmd.ExecuteNonQuery();
+            if (result_count != 0)
+                isSuccess = true;
+            return isSuccess;
+        }
+        /// <summary>
+        /// 插入语句
+        /// </summary>
+        /// <param name="sql_str"></param>
+        /// <returns></returns>
+        public bool InsertSql(string sql_str)
+        {
+            bool isSuccess = false;
+            MySqlCommand cmd = new MySqlCommand(sql_str, connection);
 
             int result_count = cmd.ExecuteNonQuery();
             if (result_count != 0)

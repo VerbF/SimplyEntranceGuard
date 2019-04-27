@@ -25,13 +25,13 @@ namespace SimplyEntranceGuard
         {
             //设置已考勤人员列表标题
             listView_checkin.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
-            listView_checkin.Columns.Add("考勤时间", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_checkin.Columns.Add("考勤时间", 120, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_checkin.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_checkin.View = System.Windows.Forms.View.Details;
 
             //设置迟到人员列表标题
             listView_late.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
-            listView_late.Columns.Add("考勤时间", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_late.Columns.Add("考勤时间", 120, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_late.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_late.View = System.Windows.Forms.View.Details;
 
@@ -54,8 +54,8 @@ namespace SimplyEntranceGuard
             List<CheckinRecord> records_not_checkin = new List<CheckinRecord>();
 
             //获得考勤时间段
-            start_time = tbox_start_time.Text;
-            end_time = tbox_end_time.Text;
+            start_time = DateTime.Now.ToShortDateString().ToString() + "-" + tbox_start_time.Text;
+            end_time = DateTime.Now.ToShortDateString().ToString()+"-"+ tbox_end_time.Text;
 
             //从数据库中获取全部人员信息
             DatabaseUtility databaseUtility = new DatabaseUtility();
@@ -152,6 +152,8 @@ namespace SimplyEntranceGuard
             DataTable dataTable = new DataTable();
             foreach(CheckinRecord record in records)
             {
+                record.CheckinTime = DateTime.Now.ToShortDateString().ToString() + "-"+record.CheckinTime;
+      
                 string sql_str = "select * from checkin_record where checkin_time = '" +record.CheckinTime+"' and card_id = '"+ record.staff.CardID+ "'";
                 dataTable = databaseUtility.SelectSql(sql_str);
                 //若数据库中无此记录

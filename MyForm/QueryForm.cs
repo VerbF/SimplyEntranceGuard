@@ -24,9 +24,11 @@ namespace SimplyEntranceGuard.MyForm
         {
             //设置已考勤人员列表标题
             listView_query_result.Columns.Add("员工姓名", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
-            listView_query_result.Columns.Add("考勤时间", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
+            listView_query_result.Columns.Add("考勤时间", 120, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_query_result.Columns.Add("所在部门", 60, HorizontalAlignment.Center);    //将列头添加到ListView控件。
             listView_query_result.View = System.Windows.Forms.View.Details;
+
+            tbox_query_date.Text = DateTime.Now.ToShortDateString().ToString();
         }
 
         private void Btn_query_Click(object sender, EventArgs e)
@@ -37,9 +39,14 @@ namespace SimplyEntranceGuard.MyForm
             databaseUtility.CloseConnection();
 
             listView_query_result.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            listView_query_result.Items.Clear();
             //显示查询结果
             foreach (CheckinRecord record in records)
             {
+                string query_date = tbox_query_date.Text;
+                string record_date = record.CheckinTime.Substring(0, record.CheckinTime.IndexOf("-"));
+                if (query_date != record_date)
+                    continue;
                 ListViewItem listViewItem = new ListViewItem();
                 listViewItem.Text = record.staff.Name;
                 listViewItem.SubItems.Add(record.CheckinTime);

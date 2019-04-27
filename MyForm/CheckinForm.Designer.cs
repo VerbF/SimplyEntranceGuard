@@ -54,13 +54,13 @@
             this.listView_checkin.FullRowSelect = true;
             this.listView_checkin.Location = new System.Drawing.Point(29, 149);
             this.listView_checkin.Name = "listView_checkin";
-            this.listView_checkin.Size = new System.Drawing.Size(265, 330);
+            this.listView_checkin.Size = new System.Drawing.Size(341, 330);
             this.listView_checkin.TabIndex = 1;
             this.listView_checkin.UseCompatibleStateImageBehavior = false;
             // 
             // listView_not_checkin
             // 
-            this.listView_not_checkin.Location = new System.Drawing.Point(663, 149);
+            this.listView_not_checkin.Location = new System.Drawing.Point(751, 149);
             this.listView_not_checkin.Name = "listView_not_checkin";
             this.listView_not_checkin.Size = new System.Drawing.Size(177, 330);
             this.listView_not_checkin.TabIndex = 2;
@@ -69,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(81, 116);
+            this.label1.Location = new System.Drawing.Point(148, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 3;
@@ -78,7 +78,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(686, 116);
+            this.label2.Location = new System.Drawing.Point(798, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 4;
@@ -87,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(399, 116);
+            this.label3.Location = new System.Drawing.Point(468, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
             this.label3.TabIndex = 6;
@@ -95,9 +95,9 @@
             // 
             // listView_late
             // 
-            this.listView_late.Location = new System.Drawing.Point(338, 149);
+            this.listView_late.Location = new System.Drawing.Point(390, 149);
             this.listView_late.Name = "listView_late";
-            this.listView_late.Size = new System.Drawing.Size(251, 330);
+            this.listView_late.Size = new System.Drawing.Size(317, 330);
             this.listView_late.TabIndex = 5;
             this.listView_late.UseCompatibleStateImageBehavior = false;
             // 

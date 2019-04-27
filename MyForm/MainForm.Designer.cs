@@ -40,7 +40,7 @@
             // 
             this.btn_form_switch_checkin.AccessibleName = "true";
             this.btn_form_switch_checkin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_form_switch_checkin.Location = new System.Drawing.Point(958, 42);
+            this.btn_form_switch_checkin.Location = new System.Drawing.Point(1049, 48);
             this.btn_form_switch_checkin.Name = "btn_form_switch_checkin";
             this.btn_form_switch_checkin.Size = new System.Drawing.Size(98, 46);
             this.btn_form_switch_checkin.TabIndex = 0;
@@ -57,7 +57,7 @@
             // btn_form_switch_staff_management
             // 
             this.btn_form_switch_staff_management.AccessibleName = "true";
-            this.btn_form_switch_staff_management.Location = new System.Drawing.Point(958, 140);
+            this.btn_form_switch_staff_management.Location = new System.Drawing.Point(1049, 138);
             this.btn_form_switch_staff_management.Name = "btn_form_switch_staff_management";
             this.btn_form_switch_staff_management.Size = new System.Drawing.Size(98, 46);
             this.btn_form_switch_staff_management.TabIndex = 3;
@@ -70,13 +70,13 @@
             this.panel_main.AccessibleName = "true";
             this.panel_main.Location = new System.Drawing.Point(1, 1);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(928, 556);
+            this.panel_main.Size = new System.Drawing.Size(1042, 556);
             this.panel_main.TabIndex = 5;
             // 
             // btn_form_switch_query
             // 
             this.btn_form_switch_query.AccessibleName = "true";
-            this.btn_form_switch_query.Location = new System.Drawing.Point(958, 232);
+            this.btn_form_switch_query.Location = new System.Drawing.Point(1049, 245);
             this.btn_form_switch_query.Name = "btn_form_switch_query";
             this.btn_form_switch_query.Size = new System.Drawing.Size(98, 46);
             this.btn_form_switch_query.TabIndex = 6;

@@ -48,6 +48,34 @@ namespace SimplyEntranceGuard.Control
             return staffs;
         }
         /// <summary>
+        /// 获得全部考勤信息
+        /// </summary>
+        /// <returns></returns>
+        public List<CheckinRecord> GetAllRecords()
+        {
+            List<CheckinRecord> records = new List<CheckinRecord>();
+
+            string cmd_str = "SELECT checkin_time, " +
+            "checkin_record.card_id as card_id, " +
+            "department.name as department_name," +
+            "staff.`name` as staff_name " +
+            "FROM checkin_record, staff, department " +
+            "where staff.card_id = checkin_record.card_id and staff.department_id = department.id";//sql语句
+            DataTable dataTable = SelectSql(cmd_str);//执行sql语句，获得返回结果
+            foreach (DataRow row in dataTable.Rows)
+            {
+
+                CheckinRecord record = new CheckinRecord();
+                record.CheckinTime = row["checkin_time"].ToString();
+                record.staff.CardID = row["card_id"].ToString();
+                record.staff.DepartmentName = row["department_name"].ToString();
+                record.staff.Name = row["staff_name"].ToString();
+                records.Add(record);
+            }
+
+            return records;
+        }
+        /// <summary>
         /// 执行 select sql 语句 并返回结果
         /// </summary>
         /// <param name="cmd_str"></param>

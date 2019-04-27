@@ -1,4 +1,5 @@
 ﻿using SimplyEntranceGuard.Control;
+using SimplyEntranceGuard.MyForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace SimplyEntranceGuard
         public Form form_checkin;
         public Form form_login;
         public Form form_main;
+        public Form form_query;
         public MainForm()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace SimplyEntranceGuard
             form_checkin = new CheckinForm(this);
             form_staff_management =  new StaffManagementForm(this);
             form_login = new LoginForm(this);
+            form_query = new QueryForm(this);
             form_main = this;
             //FileUtility初始化
             fileUtility = new FileUtility(FILE_NAME);
@@ -41,6 +44,7 @@ namespace SimplyEntranceGuard
             panel_main.Controls.Add(form_login);
             btn_form_switch_checkin.Hide();//隐藏按钮
             btn_form_switch_staff_management.Hide();//隐藏按钮
+            btn_form_switch_query.Hide();//隐藏按钮
             form_login.Show();                      //窗体运行
 
 
@@ -67,5 +71,14 @@ namespace SimplyEntranceGuard
             form_staff_management.Show();                      //窗体运行
         }
 
+        private void Btn_form_switch_query_Click(object sender, EventArgs e)
+        {
+            form_query.TopLevel = false;
+            form_query.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;//设置窗体为非边框样式
+            form_query.Dock = System.Windows.Forms.DockStyle.Fill;                  //设置样式是否填充整个panel ;
+            panel_main.Controls.Clear();
+            panel_main.Controls.Add(form_query);
+            form_query.Show();                      //窗体运行
+        }
     }
 }

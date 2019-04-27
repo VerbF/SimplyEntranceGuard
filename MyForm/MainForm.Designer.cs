@@ -33,6 +33,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btn_form_switch_staff_management = new System.Windows.Forms.Button();
             this.panel_main = new System.Windows.Forms.Panel();
+            this.btn_form_switch_query = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_form_switch_checkin
@@ -72,11 +73,23 @@
             this.panel_main.Size = new System.Drawing.Size(928, 556);
             this.panel_main.TabIndex = 5;
             // 
+            // btn_form_switch_query
+            // 
+            this.btn_form_switch_query.AccessibleName = "true";
+            this.btn_form_switch_query.Location = new System.Drawing.Point(958, 232);
+            this.btn_form_switch_query.Name = "btn_form_switch_query";
+            this.btn_form_switch_query.Size = new System.Drawing.Size(98, 46);
+            this.btn_form_switch_query.TabIndex = 6;
+            this.btn_form_switch_query.Text = "信息查询";
+            this.btn_form_switch_query.UseVisualStyleBackColor = true;
+            this.btn_form_switch_query.Click += new System.EventHandler(this.Btn_form_switch_query_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 563);
+            this.Controls.Add(this.btn_form_switch_query);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.btn_form_switch_staff_management);
             this.Controls.Add(this.btn_form_switch_checkin);
@@ -92,6 +105,7 @@
         public System.Windows.Forms.Button btn_form_switch_checkin;
         public System.Windows.Forms.Panel panel_main;
         public System.Windows.Forms.Button btn_form_switch_staff_management;
+        public System.Windows.Forms.Button btn_form_switch_query;
     }
 }
 

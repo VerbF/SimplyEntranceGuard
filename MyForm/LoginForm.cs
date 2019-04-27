@@ -57,8 +57,10 @@ namespace SimplyEntranceGuard
                     panel_main.Controls.Clear();
                     panel_main.Controls.Add(form_checkin);
                     panel_main.BorderStyle = BorderStyle.FixedSingle;
-                    form_main.btn_form_switch_checkin.Show();
-                    form_main.btn_form_switch_staff_management.Show();
+                    
+                    form_main.btn_form_switch_checkin.Show();//显示掩藏的按钮
+                    form_main.btn_form_switch_staff_management.Show();//显示掩藏的按钮
+                    form_main.btn_form_switch_query.Show();//显示掩藏的按钮
                     form_checkin.Show();                      //窗体运行
                 }
 

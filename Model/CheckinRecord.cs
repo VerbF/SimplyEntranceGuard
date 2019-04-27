@@ -11,6 +11,10 @@ namespace SimplyEntranceGuard.Control
         public string CheckinTime;
         public Staff staff;
 
+        public CheckinRecord()
+        {
+            staff = new Staff();
+        }
         public int CompareTo(CheckinRecord other)
         {
             int compare_result = string.Compare(this.staff.CardID, other.staff.CardID);

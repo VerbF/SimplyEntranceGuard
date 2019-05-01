@@ -32,9 +32,9 @@ namespace SimplyEntranceGuard.Control
         /// <returns></returns>
         public string ReadFile()
         {
-            string result;
+            string result = "";
             StreamReader sr = new StreamReader(Application.StartupPath + "\\" + file_name, false);
-            result = sr.ReadLine().ToString();
+            result = sr.ReadLine();
             sr.Close();
             return result;
         }        
@@ -65,7 +65,10 @@ namespace SimplyEntranceGuard.Control
         /// <returns></returns>
         public int GetLength()
         {
-            int newLength = ReadFile().Length;
+            int newLength = 0;
+            string result = ReadFile();
+            if(result != null)
+                newLength = result.Length;
             return newLength;
         }
     }

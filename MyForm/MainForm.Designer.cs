@@ -72,6 +72,7 @@
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(1042, 556);
             this.panel_main.TabIndex = 5;
+            this.panel_main.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_main_Paint);
             // 
             // btn_form_switch_query
             // 

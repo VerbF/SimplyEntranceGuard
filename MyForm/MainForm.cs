@@ -80,5 +80,10 @@ namespace SimplyEntranceGuard
             panel_main.Controls.Add(form_query);
             form_query.Show();                      //窗体运行
         }
+
+        private void Panel_main_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

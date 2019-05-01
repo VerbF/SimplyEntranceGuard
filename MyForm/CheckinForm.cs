@@ -16,10 +16,13 @@ namespace SimplyEntranceGuard
         public MainForm form_main;
         public string start_time;
         public string end_time;
+        public FileUtility fileUtility;
+        static string FILE_NAME = "checkin.txt";
         public CheckinForm(MainForm form)
         {
             InitializeComponent();
             form_main = form;
+            fileUtility = new FileUtility(FILE_NAME);
         }
         private void CheckinForm_Load(object sender, EventArgs e)
         {
@@ -70,7 +73,7 @@ namespace SimplyEntranceGuard
             listView_late.Items.Clear();     //清除原数据
             listView_not_checkin.Items.Clear();     //清除原数据
 
-            List<CheckinRecord> records = form_main.fileUtility.GetNewCheckinRecord();//获得考勤数据
+            List<CheckinRecord> records = fileUtility.GetNewCheckinRecord();//获得考勤数据
 
             SaveCheckinRecords(records);//将考勤数据写入数据库中
 

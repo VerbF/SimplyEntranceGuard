@@ -56,6 +56,7 @@ namespace SimplyEntranceGuard
                 bool isSuccess = databaseUtility.UpdateSql(sql_str) == true;
                 if (isSuccess)
                 {
+                    select_row_card_id = new_card_id;
                     MessageBox.Show("保存成功！");
                     UpdateStaffList();
                 }
